@@ -31,6 +31,16 @@
                 0% { transform: rotate(0deg); }
                 100% { transform: rotate(360deg); }
             }
+
+            select[readonly] {
+                background: #eee;
+                pointer-events: none;
+                touch-action: none;
+            }
+
+            .custom-file-input:lang(en) ~ .custom-file-label::after {
+                content: "Buscar";
+            }
         </style>
 
         @livewireStyles
@@ -95,13 +105,14 @@
 
                             <!-- Other Routes -->
                             <li class="nav-item">
-                                <a href="#" class="nav-link"><i class="nav-icon fa fa-dog fa-fw"></i> {{ __('Cachorros Perdidos') }}</a>
+                                <a href="{{ route('lost-dogs') }}" class="nav-link"><i class="nav-icon fa fa-dog fa-fw"></i> {{ __('Cachorros Perdidos') }}</a>
                             </li>
                         </ul>
                     </nav>
                     <!-- /.sidebar-menu -->
                 </div>
                 <!-- /.sidebar -->
+
             </aside>
 
             <!-- Content Wrapper. Contains page content -->
@@ -153,9 +164,13 @@
         @stack('scripts')
 
         <script async type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.js"></script>
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/inputmask/4.0.9/jquery.inputmask.bundle.min.js" integrity="sha512-VpQwrlvKqJHKtIvpL8Zv6819FkTJyE1DoVNH0L2RLn8hUPjRjkS/bCYurZs0DX9Ybwu9oHRHdBZR9fESaq8Z8A==" crossorigin="anonymous"></script>
         <script>
             $(document).ready(function() {
                 $('#dataTable').DataTable();
+                $('.carousel').carousel();
+                //Datemask dd/mm/yyyy
+                $('.datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' });
             });
         </script>
     </body>

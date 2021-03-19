@@ -15,12 +15,16 @@ class CreateLostDogsTable extends Migration
     {
         Schema::create('lost_dogs', function (Blueprint $table) {
             $table->id();
-            $table->string("nome");
+            $table->string("name");
             $table->string("description");
             $table->string("last_seen_at");
+            $table->foreignId("posted_by")->nullable();
             $table->foreignId("found_by")->nullable();
-            $table->timestamp("found_at")->nullable();
+            $table->string("found_at")->nullable();
             $table->timestamps();
+
+            $table->foreign('posted_by')->references('id')->on('users')
+                ->onUpdate('cascade')->onDelete('cascade');
 
             $table->foreign('found_by')->references('id')->on('users')
                 ->onUpdate('cascade')->onDelete('cascade');

@@ -27,6 +27,22 @@
                 </div>
 
                 <div class="form-group">
+                    <x-jet-label value="{{ __('Celular') }}" />
+
+                    <x-jet-input class="{{ $errors->has('phone') ? 'is-invalid' : '' }}" type="tel" name="phone"
+                                 :value="old('phone')" required autofocus autocomplete="phone" />
+                    <x-jet-input-error for="phone"></x-jet-input-error>
+                </div>
+
+                <div class="form-group">
+                    <x-jet-label value="{{ __('Data de nascimento') }}" />
+
+                    <x-jet-input class="{{ $errors->has('birthdate') ? 'is-invalid' : '' }}" type="date" name="birthdate" required pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"
+                                 :value="old('birthdate')" required autofocus autocomplete="birthdate" />
+                    <x-jet-input-error for="birthdate"></x-jet-input-error>
+                </div>
+
+                <div class="form-group">
                     <x-jet-label value="{{ __('Senha') }}" />
 
                     <x-jet-input class="{{ $errors->has('password') ? 'is-invalid' : '' }}" type="password"

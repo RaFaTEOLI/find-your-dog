@@ -18,6 +18,7 @@ class CreateLostDogsTable extends Migration
             $table->string("name");
             $table->string("description");
             $table->string("last_seen_at");
+            $table->double("reward", 8, 2);
             $table->foreignId("posted_by")->nullable();
             $table->foreignId("found_by")->nullable();
             $table->string("found_at")->nullable();

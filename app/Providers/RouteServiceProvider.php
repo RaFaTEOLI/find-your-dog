@@ -55,6 +55,8 @@ class RouteServiceProvider extends ServiceProvider
             $this->loadWebRoute("role");
             $this->loadWebRoute("permission");
             $this->loadWebRoute("lost_dogs");
+            $this->loadWebRoute("found_dogs");
+            $this->loadWebRoute("my_dogs");
         });
     }
 

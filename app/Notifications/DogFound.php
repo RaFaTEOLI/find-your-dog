@@ -42,11 +42,8 @@ class DogFound extends Notification
     {
         return (new MailMessage)
                     ->line('Seu cachorro foi achado!')
-                    ->line("Entre em contato com a pessoa abaixo para mais informações.")
-                    ->line("Nome: {$this->user->name}")
-                    ->line("Email: {$this->user->email}")
-                    ->line("Celular: {$this->user->phone}")
-                    // ->action('Notification Action', url('/'))
+                    ->line("Clique no botão abaixo para dar seguimento a entrega")
+                    ->action('Acessar', url('/dogs/my-dogs'))
                     ->line('Obrigado por usar nossa aplicação!');
     }
 

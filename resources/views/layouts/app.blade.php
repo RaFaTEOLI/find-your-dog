@@ -107,6 +107,14 @@
                             <li class="nav-item">
                                 <a href="{{ route('lost-dogs') }}" class="nav-link"><i class="nav-icon fa fa-dog fa-fw"></i> {{ __('Cachorros Perdidos') }}</a>
                             </li>
+
+                            <li class="nav-item">
+                                <a href="{{ route('found-dogs') }}" class="nav-link"><i class="nav-icon fa fa-check fa-fw"></i> {{ __('Meus Encontrados') }}</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="{{ route('my-dogs') }}" class="nav-link"><i class="nav-icon fa fa-dog fa-fw"></i> {{ __('Meus Cachorros') }}</a>
+                            </li>
                         </ul>
                     </nav>
                     <!-- /.sidebar-menu -->
@@ -169,8 +177,19 @@
             $(document).ready(function() {
                 $('#dataTable').DataTable();
                 $('.carousel').carousel();
-                //Datemask dd/mm/yyyy
                 $('.datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' });
+                $(".money").inputmask('decimal', {
+                    'alias': 'numeric',
+                    'groupSeparator': '',
+                    'autoGroup': true,
+                    'digits': 2,
+                    'radixPoint': ",",
+                    'digitsOptional': false,
+                    'allowMinus': false,
+                    'prefix': 'R$ ',
+                    'placeholder': ''
+                });
+                $(".money").css("text-align", "left");
             });
         </script>
     </body>

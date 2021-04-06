@@ -17,7 +17,7 @@ class CreateFoundDogsTable extends Migration
             $table->id();
             $table->foreignId("lost_dog_id");
             $table->string("photo_found");
-            $table->string("photo_received");
+            $table->string("photo_received")->nullable();
             $table->timestamps();
         });
     }

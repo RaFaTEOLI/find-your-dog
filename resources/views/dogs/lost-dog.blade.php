@@ -54,8 +54,7 @@
                     </div>
                     <div class="form-group">
                         <label>{{ __('Descrição') }}</label>
-                        <textarea id="description" type="text" name="description" class="form-control">{{ $lostDog->description ?? 'Informações sobre o cachorro.
-Recompensa:  R$ 500,00' }}</textarea>
+                        <textarea id="description" type="text" name="description" class="form-control">{{ $lostDog->description ?? 'Informações sobre o cachorro.' }}</textarea>
                         @if ($errors->get('description'))
                         <p class="label-error">
                             @foreach ($errors->get('description') as $error)
@@ -67,6 +66,20 @@ Recompensa:  R$ 500,00' }}</textarea>
                         @endif
                     </div>
                     <div class="form-group">
+                        <label>{{ __('Recompensa') }}</label>
+                        <input id="reward" type="text" name="reward" class="form-control money" value="{{ $lostDog->reward ?? '' }}" style="text-align: left;">
+                        @if ($errors->get('reward'))
+                        <p class="label-error">
+                            @foreach ($errors->get('reward') as $error)
+
+                            <strong>{{ $error }}</strong>
+
+                            @endforeach
+                        </p>
+                        @endif
+                    </div>
+                    <div class="form-group">
+                        <label>{{ __('Fotos') }}</label>
                         <input type="file" class="form-control" name="photos[]" id="photos" multiple accept="image/*">
                     </div>
                     <div class="form-group">
@@ -118,6 +131,11 @@ Recompensa:  R$ 500,00' }}</textarea>
                                 <input disabled id="found_at" type="text" name="found_at" class="form-control" value="{{ $lostDog->found_at ?? '' }}">
                             </div>
                         @endif
+
+                        <div class="form-group" id="dog-photo-found" style="display: none;">
+                            <label>{{ __('Foto') }}</label>
+                            <input type="file" class="form-control" name="photo" id="photo" accept="image/*">
+                        </div>
                     @else
                         <input hidden name="posted_by" value="{{ auth()->user()->id }}">
                     @endif
@@ -132,6 +150,7 @@ Recompensa:  R$ 500,00' }}</textarea>
     <script>
         const findDog = () => {
             $("#location-found").show();
+            $("#dog-photo-found").show();
             $("#found_by").val($("#current-user-id").val());
             $("#found_by").change();
             $("#found_by").attr("disabled", false);

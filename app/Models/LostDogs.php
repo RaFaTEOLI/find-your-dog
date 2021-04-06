@@ -19,6 +19,7 @@ class LostDogs extends Model
         'description',
         'last_seen_at',
         'posted_by',
+        'reward',
         'found_at',
         'found_by',
     ];
@@ -53,6 +54,7 @@ class LostDogs extends Model
             "id" => $this->id,
             "name" => $this->name,
             "description" => $this->description,
+            "reward" => number_format($this->reward, 2, ',', ''),
             "last_seen_at" => $this->last_seen_at,
             "dog_gallery" => $this->dogGallery,
             "posted_by" => $this->whoPostedIt,

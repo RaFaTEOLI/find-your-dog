@@ -11,6 +11,9 @@ class CreateLostDogService
     {
         try {
             // Saves the Lost Dog
+            $request["reward"] = str_replace(",", ".", $request["reward"]);
+            $request["reward"] = str_replace("R$ ", "", $request["reward"]);
+
             $lostDog = LostDogs::create($request);
 
             return $lostDog;

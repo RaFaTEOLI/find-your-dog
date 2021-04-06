@@ -8,11 +8,13 @@ return [
             'roles' => 'c,r,u,d',
             'permissions' => 'c,r,u,d',
             'profile' => 'r,d',
-            'lost_dogs' => 'c,r,u,d'
+            'lost_dogs' => 'c,r,u,d',
+            'found_dogs' => 'c,r,u,d'
         ],
         'finder' => [
             'profile' => 'r,u',
-            'lost_dogs' => 'c,r,u,d'
+            'lost_dogs' => 'c,r,u,d',
+            'found_dogs' => 'c,r,u,d'
         ],
     ],
     'user_roles' => [

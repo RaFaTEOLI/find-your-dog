@@ -2,9 +2,9 @@
 
 namespace App\Services\FindDog;
 
+use App\Models\FoundDogs;
 use App\Notifications\DogFound;
 use App\Repositories\LostDogs\LostDogsRepository;
-use Illuminate\Support\Facades\Notification;
 use App\Models\User;
 use Exception;
 
@@ -20,6 +20,8 @@ class FindDogService
             $lostDogRepository->update($id, $request);
 
             $user = User::find($lostDog->posted_by->id);
+
+            FoundDogs::create(["photo_found" => $request["photo_found"], "lost_dog_id" => $id]);
 
             $user->notify(new DogFound($user, $lostDog));
 

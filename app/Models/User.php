@@ -71,6 +71,7 @@ class User extends Authenticatable implements MustVerifyEmail
             "name" => $this->name,
             "email" => $this->email,
             "photo" => $this->photo,
+            "phone" => $this->phone,
             "created_at" => $this->created_at,
             "updated_at" => $this->updated_at,
             "roles" => $this->roles()

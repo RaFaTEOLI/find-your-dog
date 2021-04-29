@@ -18,6 +18,7 @@ class FoundDogs extends Model
         'lost_dog_id',
         'photo_found',
         'photo_received',
+        'paid',
     ];
 
 }

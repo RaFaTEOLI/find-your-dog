@@ -77,7 +77,7 @@
                 @endif
 
                 <input hidden id="current-user-id" value="{{ auth()->user()->id }}">
-                <form enctype="multipart/form-data" role="form" action="{{ empty($foundDog) ? route('found-dogs') : route('found-dogs.update', $foundDog->id ?? '') }}" method="POST">
+                <form id="form-dog" enctype="multipart/form-data" role="form" action="{{ empty($foundDog) ? route('found-dogs') : route('found-dogs.update', $foundDog->id ?? '') }}" method="POST">
                     @csrf
                     @method(empty($foundDog) ? 'POST' : 'PUT')
                     @if (Auth::user()->hasRole("admin") || empty($foundDog) ? true : (Auth::user()->id == $foundDog->posted_by->id))
@@ -108,17 +108,35 @@
                         @endif
                     </div>
                     <div class="form-group">
-                        <label>{{ __('Recompensa') }}</label>
-                        <input id="reward" type="text" name="reward" class="form-control money" value="{{ $foundDog->reward ?? '' }}" style="text-align: left;" readonly>
-                        @if ($errors->get('reward'))
-                        <p class="label-error">
-                            @foreach ($errors->get('reward') as $error)
+                        <div class="row">
+                            <div class="col<?php (!$found->paid) ? "-6" : "-12" ?>">
+                                <label>{{ __('Recompensa') }}</label>
+                                <input id="reward" type="text" name="reward" class="form-control money" value="{{ $foundDog->reward ?? '' }}" style="text-align: left;" readonly>
+                                @if ($errors->get('reward'))
+                                <p class="label-error">
+                                    @foreach ($errors->get('reward') as $error)
 
-                            <strong>{{ $error }}</strong>
+                                    <strong>{{ $error }}</strong>
 
-                            @endforeach
-                        </p>
-                        @endif
+                                    @endforeach
+                                </p>
+                                @endif
+                            </div>
+                            @if (!$found->paid)
+                            <div class="col-6" style="display: inline-block; align-self: flex-end;">
+                                <br />
+                                <input hidden type="text" name="paid" id="paid" value="0" />
+                                <button type="button" id="pay" class="btn btn-primary">{{ __('Pagar') }}</button>
+                            </div>
+                            @else
+                            <div class="col-6" style="display: inline-block; align-self: flex-end;">
+                                <?php
+                                    $whatsappLink = $foundDog->found_by->phone ? "https://wa.me/" . $foundDog->found_by->phone : "#";
+                                ?>
+                                <a type="button" href="{{ $whatsappLink }}" target="_blank" class="btn btn-primary">Enviar Mensagem</a>
+                            </div>
+                            @endif
+                        </div>
                     </div>
                         @if (Auth::user()->id == $foundDog->posted_by->id)
                         <div class="form-group">
@@ -137,4 +155,13 @@
             </div>
         </div>
     </div>
+    <script>
+        window.onload = () => {
+            const payButton = document.querySelector("#pay");
+            payButton.onclick = () => {
+                document.querySelector("#paid").value = 1;
+                document.querySelector("#form-dog").submit();
+            }
+        }
+    </script>
 </x-app-layout>

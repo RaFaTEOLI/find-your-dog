@@ -46,6 +46,7 @@ class RouteServiceProvider extends ServiceProvider
             $this->loadApiRoute("user");
             $this->loadApiRoute("role");
             $this->loadApiRoute("permission");
+            $this->loadApiRoute("payment");
 
             Route::middleware('web')
                 ->namespace($this->namespace)
@@ -57,6 +58,7 @@ class RouteServiceProvider extends ServiceProvider
             $this->loadWebRoute("lost_dogs");
             $this->loadWebRoute("found_dogs");
             $this->loadWebRoute("my_dogs");
+            $this->loadWebRoute("payment");
         });
     }
 

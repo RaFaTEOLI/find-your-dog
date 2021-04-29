@@ -50,7 +50,15 @@ class FoundDogsController extends Controller
             $storePhotoService = new StorePhotoService();
             $photo = $storePhotoService->execute($request);
 
-            $this->foundDogsRepository->update($id, ["photo_received" => $photo]);
+            $input = $request->only(["paid"]);
+
+            if ($input["paid"] == 1 && $photo) {
+                $this->foundDogsRepository->update($id, ["photo_received" => $photo, "paid" => $input["paid"]]);
+            } else if ($photo) {
+                $this->foundDogsRepository->update($id, ["photo_received" => $photo]);
+            } else if ($input["paid"] == 1) {
+                $this->foundDogsRepository->update($id, ["paid" => $input["paid"]]);
+            }
 
             return $this->success($request, "my-dogs");
         } catch (Exception $e) {

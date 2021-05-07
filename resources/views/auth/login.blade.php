@@ -1,7 +1,9 @@
 <x-guest-layout>
     <x-jet-authentication-card>
         <x-slot name="logo">
-            <x-jet-authentication-card-logo />
+            <div style="display: flex; justify-content: center; align-items: center;">
+                <img src="{{ asset('findyourdog.png') }}" />
+            </div>
         </x-slot>
 
         <div class="card-body">

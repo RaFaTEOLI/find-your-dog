@@ -45,7 +45,7 @@
                             </div>
 
                             <p>
-                                <a href="#" class="link-black text-sm mr-2"><i class="fas fa-share mr-1"></i> Compartilhar</a>
+                                {{-- <a href="#" class="link-black text-sm mr-2"><i class="fas fa-share mr-1"></i> Compartilhar</a> --}}
                                 <a href="{{ route('lost-dogs.show', $lostDog->id) }}" class="link-black text-sm mr-2"><i class="fas fa-dog mr-1"></i> Encontrei</a>
                             </p>
 
